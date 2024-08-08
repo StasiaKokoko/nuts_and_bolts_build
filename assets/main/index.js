@@ -606,9 +606,9 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
   };
 });
 
-System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Detail.ts', './GameManager.ts', './SceneController.ts', './SlotOrBolt.ts', './TelegramUserDisplay.ts'], function () {
+System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Detail.ts', './GameManager.ts', './SceneController.ts', './SlotOrBolt.ts', './TelegramUserDisplay.ts', './telegram.mjs_cjs=&original=.js'], function () {
   return {
-    setters: [null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
@@ -754,8 +754,75 @@ System.register("chunks:///_virtual/SlotOrBolt.ts", ['./rollupPluginModLoBabelHe
   };
 });
 
-System.register("chunks:///_virtual/TelegramUserDisplay.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './index.mjs_cjs=&original=.js', './index.js'], function (exports) {
-  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Label, Component, _cjsExports;
+System.register("chunks:///_virtual/telegram.js", ['./cjs-loader.mjs'], function (exports, module) {
+  var loader;
+  return {
+    setters: [function (module) {
+      loader = module.default;
+    }],
+    execute: function () {
+      exports('default', void 0);
+      var _cjsExports;
+      var __cjsMetaURL = exports('__cjsMetaURL', module.meta.url);
+      loader.define(__cjsMetaURL, function (exports$1, require, module, __filename, __dirname) {
+        // #region ORIGINAL CODE
+
+        // telegram.js
+
+        window.TelegramAPI = {
+          getUserName: function getUserName() {
+            var _window$Telegram, _tg$initDataUnsafe;
+            var tg = (_window$Telegram = window.Telegram) == null ? void 0 : _window$Telegram.WebApp;
+            var user = tg == null || (_tg$initDataUnsafe = tg.initDataUnsafe) == null ? void 0 : _tg$initDataUnsafe.user;
+            if (user) {
+              return user.username || user.first_name + " " + user.last_name;
+            }
+            return null;
+          },
+          closeApp: function closeApp() {
+            var _window$Telegram2;
+            (_window$Telegram2 = window.Telegram) == null || _window$Telegram2.WebApp.close();
+          },
+          showAlert: function showAlert(message) {
+            var _window$Telegram3;
+            (_window$Telegram3 = window.Telegram) == null || _window$Telegram3.WebApp.showAlert(message);
+          }
+
+          // Добавь любые другие методы, которые тебе нужны
+        };
+
+        // #endregion ORIGINAL CODE
+
+        _cjsExports = exports('default', module.exports);
+      }, {});
+    }
+  };
+});
+
+System.register("chunks:///_virtual/telegram.mjs_cjs=&original=.js", ['./telegram.js', './cjs-loader.mjs'], function (exports, module) {
+  var __cjsMetaURL, loader;
+  return {
+    setters: [function (module) {
+      __cjsMetaURL = module.__cjsMetaURL;
+      var _setter = {};
+      _setter.__cjsMetaURL = module.__cjsMetaURL;
+      _setter.default = module.default;
+      exports(_setter);
+    }, function (module) {
+      loader = module.default;
+    }],
+    execute: function () {
+      // I am the facade module who provides access to the CommonJS module './telegram.js'~
+      if (!__cjsMetaURL) {
+        loader.throwInvalidWrapper('./telegram.js', module.meta.url);
+      }
+      loader.require(__cjsMetaURL);
+    }
+  };
+});
+
+System.register("chunks:///_virtual/TelegramUserDisplay.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Label, Component;
   return {
     setters: [function (module) {
       _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
@@ -767,15 +834,13 @@ System.register("chunks:///_virtual/TelegramUserDisplay.ts", ['./rollupPluginMod
       _decorator = module._decorator;
       Label = module.Label;
       Component = module.Component;
-    }, null, function (module) {
-      _cjsExports = module.default;
     }],
     execute: function () {
-      var _dec, _dec2, _dec3, _class, _class2, _descriptor, _descriptor2;
+      var _dec, _dec2, _class, _class2, _descriptor;
       cclegacy._RF.push({}, "ba950hNox5NtJgYTWmNph+b", "TelegramUserDisplay", undefined);
       var ccclass = _decorator.ccclass,
         property = _decorator.property;
-      var TelegramUserDisplay = exports('TelegramUserDisplay', (_dec = ccclass('TelegramUserDisplay'), _dec2 = property(Label), _dec3 = property(Label), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+      var TelegramUserDisplay = exports('TelegramUserDisplay', (_dec = ccclass('TelegramUserDisplay'), _dec2 = property(Label), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
         _inheritsLoose(TelegramUserDisplay, _Component);
         function TelegramUserDisplay() {
           var _this;
@@ -784,51 +849,28 @@ System.register("chunks:///_virtual/TelegramUserDisplay.ts", ['./rollupPluginMod
           }
           _this = _Component.call.apply(_Component, [this].concat(args)) || this;
           _initializerDefineProperty(_this, "userLabel", _descriptor, _assertThisInitialized(_this));
-          _initializerDefineProperty(_this, "userLabel2", _descriptor2, _assertThisInitialized(_this));
           return _this;
         }
         var _proto = TelegramUserDisplay.prototype;
         _proto.start = function start() {
-          try {
-            // Проверка на наличие initDataUnsafe и данных пользователя
-            var initData = _cjsExports.initDataUnsafe;
-            var user = initData == null ? void 0 : initData.user;
-
-            // Проверка, запущено ли приложение в Telegram Web App
-            if (!_cjsExports.isExpanded) {
-              this.userLabel2.string = "Приложение не запущено в Telegram Web App.";
-            }
-
-            // Если игра запущена вне Telegram, использовать значения по умолчанию
-            var username = (user == null ? void 0 : user.username) || ((user == null ? void 0 : user.first_name) || 'Гость') + " " + ((user == null ? void 0 : user.last_name) || '');
-
-            // Выводим имя пользователя на экран
-            if (this.userLabel) {
-              this.userLabel.string = "\u041F\u0440\u0438\u0432\u0435\u0442, " + username.trim() + "!";
-            }
-          } catch (error) {
-            console.error("Ошибка при получении данных пользователя:", error);
-            if (this.userLabel) {
-              this.userLabel.string = "Ошибка при получении данных пользователя";
-            }
+          // Теперь TypeScript знает, что TelegramAPI существует в глобальном контексте
+          var username = window.TelegramAPI.getUserName();
+          if (username) {
+            this.userLabel.string = "\u041F\u0440\u0438\u0432\u0435\u0442, " + username.trim() + "!";
+          } else {
+            this.userLabel.string = "Не удалось получить имя пользователя.";
+            console.log("Проверьте, что приложение запущено в Telegram.");
           }
         };
         return TelegramUserDisplay;
-      }(Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, "userLabel", [_dec2], {
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "userLabel", [_dec2], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return null;
         }
-      }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, "userLabel2", [_dec3], {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        initializer: function initializer() {
-          return null;
-        }
-      })), _class2)) || _class));
+      }), _class2)) || _class));
       cclegacy._RF.pop();
     }
   };
