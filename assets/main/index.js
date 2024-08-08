@@ -606,9 +606,9 @@ System.register("chunks:///_virtual/GameManager.ts", ['./rollupPluginModLoBabelH
   };
 });
 
-System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Detail.ts', './GameManager.ts', './SceneController.ts', './SlotOrBolt.ts', './TelegramUserDisplay.ts', './telegram.mjs_cjs=&original=.js'], function () {
+System.register("chunks:///_virtual/main", ['./debug-view-runtime-control.ts', './Detail.ts', './GameManager.ts', './SceneController.ts', './SlotOrBolt.ts', './TelegramUserDisplay.ts', './UserAlertButton.ts', './telegram.mjs_cjs=&original=.js'], function () {
   return {
-    setters: [null, null, null, null, null, null, null],
+    setters: [null, null, null, null, null, null, null, null],
     execute: function () {}
   };
 });
@@ -772,6 +772,7 @@ System.register("chunks:///_virtual/telegram.js", ['./cjs-loader.mjs'], function
         window.TelegramAPI = {
           getUserName: function getUserName() {
             var _window$Telegram, _tg$initDataUnsafe;
+            console.log("hello from js");
             var tg = (_window$Telegram = window.Telegram) == null ? void 0 : _window$Telegram.WebApp;
             var user = tg == null || (_tg$initDataUnsafe = tg.initDataUnsafe) == null ? void 0 : _tg$initDataUnsafe.user;
             if (user) {
@@ -864,6 +865,72 @@ System.register("chunks:///_virtual/TelegramUserDisplay.ts", ['./rollupPluginMod
         };
         return TelegramUserDisplay;
       }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "userLabel", [_dec2], {
+        configurable: true,
+        enumerable: true,
+        writable: true,
+        initializer: function initializer() {
+          return null;
+        }
+      }), _class2)) || _class));
+      cclegacy._RF.pop();
+    }
+  };
+});
+
+System.register("chunks:///_virtual/UserAlertButton.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc'], function (exports) {
+  var _applyDecoratedDescriptor, _inheritsLoose, _initializerDefineProperty, _assertThisInitialized, cclegacy, _decorator, Button, Component;
+  return {
+    setters: [function (module) {
+      _applyDecoratedDescriptor = module.applyDecoratedDescriptor;
+      _inheritsLoose = module.inheritsLoose;
+      _initializerDefineProperty = module.initializerDefineProperty;
+      _assertThisInitialized = module.assertThisInitialized;
+    }, function (module) {
+      cclegacy = module.cclegacy;
+      _decorator = module._decorator;
+      Button = module.Button;
+      Component = module.Component;
+    }],
+    execute: function () {
+      var _dec, _dec2, _class, _class2, _descriptor;
+      cclegacy._RF.push({}, "0963bMuvURCfJkCS/cf/7D1", "UserAlertButton", undefined);
+      var ccclass = _decorator.ccclass,
+        property = _decorator.property;
+      var UserAlertButton = exports('UserAlertButton', (_dec = ccclass('UserAlertButton'), _dec2 = property(Button), _dec(_class = (_class2 = /*#__PURE__*/function (_Component) {
+        _inheritsLoose(UserAlertButton, _Component);
+        function UserAlertButton() {
+          var _this;
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+          _initializerDefineProperty(_this, "button", _descriptor, _assertThisInitialized(_this));
+          return _this;
+        }
+        var _proto = UserAlertButton.prototype;
+        _proto.start = function start() {
+          // Если кнопка установлена через инспектор, добавляем обработчик события
+          if (this.button) {
+            this.button.node.on('click', this.showUserAlert, this);
+          }
+        };
+        _proto.showUserAlert = function showUserAlert() {
+          var _window$TelegramAPI;
+          var username = (_window$TelegramAPI = window.TelegramAPI) == null ? void 0 : _window$TelegramAPI.getUserName();
+          if (username) {
+            alert("\u041F\u0440\u0438\u0432\u0435\u0442, " + username.trim() + "!");
+          } else {
+            alert("Не удалось получить имя пользователя.");
+          }
+        };
+        _proto.onDestroy = function onDestroy() {
+          // Удаляем обработчик события при уничтожении объекта
+          if (this.button) {
+            this.button.node.off('click', this.showUserAlert, this);
+          }
+        };
+        return UserAlertButton;
+      }(Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "button", [_dec2], {
         configurable: true,
         enumerable: true,
         writable: true,

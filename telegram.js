@@ -2,6 +2,7 @@
 
 window.TelegramAPI = {
     getUserName: function() {
+        console.log("hello from js");
         const tg = window.Telegram?.WebApp;
         const user = tg?.initDataUnsafe?.user;
         if (user) {
