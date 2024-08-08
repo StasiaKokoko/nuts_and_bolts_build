@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Cocos Creator | Test_Nuts</title>
-    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui=true"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="full-screen" content="yes"/>
     <meta name="screen-orientation" content="portrait"/>
@@ -17,22 +17,21 @@
   </head>
   <body>
     <h1 class="header">Test_Nuts</h1>
+
     <div id="GameDiv" cc_exact_fit_screen="false" style="width: 100%; height: 100%;">
       <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" width="1080" height="1920" tabindex="99"></canvas>
       </div>
     </div>
+    
     <p class="footer">
       Created with <a href="https://www.cocos.com/products" title="Cocos Creator">Cocos Creator</a>
     </p>
-    <!-- Polyfills bundle. -->
-    <script src="./src/polyfills.bundle.js" charset="utf-8"> </script>    
-    <!-- SystemJS support. -->
+
+    <!-- Подключение необходимых скриптов -->
+    <script src="./src/polyfills.bundle.js" charset="utf-8"> </script>
     <script src="./src/system.bundle.js" charset="utf-8"> </script>
-    <!-- Import map -->
     <script src="./src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
-    <script>
-        System.import('./src/index.js').catch(function(err) { console.error(err); })
-    </script>
+    <script src="./index.js" charset="utf-8"> </script>
   </body>
 </html>
